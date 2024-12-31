@@ -1,12 +1,18 @@
-import dotenv from "dotenv";
-dotenv.config()
-import express from 'express';
-import userValidator from '../middlewares/validateUserParams.mjs';
-import userController from '../controllers/userControllers.mjs';
+import express from "express";
+import {
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+} from "../controllers/UserController.mjs";
 
 const router = express.Router();
 
-// User registration route with validation
-router.post('/register',userValidator, userController.userRegister);
-router.post('/login', userController.userLogin);
+router.post("/", createUser);
+router.get("/", getAllUsers);
+router.get("/:id", getUserById);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
+
 export default router;

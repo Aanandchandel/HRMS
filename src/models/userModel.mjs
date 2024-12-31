@@ -1,27 +1,40 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  first_name: {
+  full_name: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
   },
-  last_name: {
+  username: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    trim: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    match: [/.+@.+\..+/, "Invalid email format"],
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
-  is_admin: {
+  img_path: {
+    type: String,
+    default: null,
+  },
+  is_valid: {
     type: Boolean,
-    default: false, // Default value is false (regular user)
+    default: false,
   },
-}, { timestamps: true })
+}, {
+  timestamps: true, // Automatically adds createdAt and updatedAt fields
+});
 
-const userModel = mongoose.model('User', userSchema);
-export default userModel
+const User = mongoose.model("User", userSchema);
+export default User;

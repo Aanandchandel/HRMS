@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 
-app.use('/api', userRoutes);
+
 app.use("/api",otpRoutes);
 //connect to DB
 connectDb()
