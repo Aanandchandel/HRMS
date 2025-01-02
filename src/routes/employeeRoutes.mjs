@@ -1,13 +1,7 @@
 import express from "express";
-import multer from "multer";
+import  upload from "../services/uplodeFile.mjs"
 import EmployeeController from "../controllers/EmployeeController.mjs";
 
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"), // Directory for file uploads
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
-});
-const upload = multer({ storage });
 
 const router = express.Router();
 
